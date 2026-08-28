@@ -16,7 +16,8 @@ sources_to_synthesize:
 # Stargate (Teleport)
 
 **Public URL:** `https://stargate.odieplat.io`  
-**Jira:** Epic E01 → Story [PLAT-100](https://catalystsoftware.atlassian.net/browse/PLAT-100) (Platform Access — Stargate)
+**Jira:** Epic E01 → Story [PLAT-10](https://catalystsoftware.atlassian.net/browse/PLAT-10) (Platform Access — Stargate)  
+**Research spike:** [PLAT-95](https://catalystsoftware.atlassian.net/browse/PLAT-95) — monitoring, DB access, AWS/network discovery ([brief](../../docs/research/teleport-access-spike.md))
 
 ## Purpose
 
@@ -32,6 +33,10 @@ kubectl get nodes
 ```
 
 Expected pattern: Google SSO once per day, then `tsh` session for kubectl and app access.
+
+## Open research (spike)
+
+Teleport as a unified gateway for kubectl, DB access, and auditing across regions/VPCs is under active discovery. See [teleport-access-spike.md](../../docs/research/teleport-access-spike.md) and Jira spike PLAT-95.
 
 ## Related
 

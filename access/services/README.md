@@ -48,6 +48,8 @@ Platform-bots agents use **cluster-internal Service endpoints** and MCP between 
 
 Future: register IKG MCP and other apps in Teleport when hub rollout completes. v1: `kubectl port-forward` only — see [mcps/interlink-map.md](../mcps/interlink-map.md).
 
+**Research:** Multi-region DB access, monitoring, VPC/egress, and audit requirements — [teleport-access-spike.md](../../docs/research/teleport-access-spike.md) (Jira PLAT-95).
+
 ```bash
 # PLACEHOLDER — Teleport app name TBD
 # tsh apps login <APP_NAME>
