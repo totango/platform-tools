@@ -82,6 +82,20 @@ Access docs and Jira tickets in this repo must respect **personal privacy**, **c
 
 Scaffold-only content is expected until the synthesis ticket ([PLAT-92](https://catalystsoftware.atlassian.net/browse/PLAT-92)) is completed via privacy-safe PRs.
 
+## Galva — modernization research (E10)
+
+**Galva** ([PLAT-96](https://catalystsoftware.atlassian.net/browse/PLAT-96)) is the PLAT program for researching how to modernize, migrate, and refactor older codebases — without executing production changes in the research phase.
+
+| Concept | Guidance |
+|---------|----------|
+| **Intake** | Facts in (topology, deps, versions) → strategy out (savings, effort, risk, blast radius) |
+| **Sizing** | Small galvas (one program) vs big galvas (service groups) — see [galva-program.md](research/galva-program.md) |
+| **Languages** | Java, Python, Go, etc. — derive ASTs per ecosystem; no single-language assumption |
+| **Platform context** | Use IKG (E09), FinOps (E04), access docs — not personal machine paths |
+| **Handoff** | Approved plans become delivery stories under E01/E02/… — Galva does not merge infra changes |
+
+Example inaugural galva: [catalyst-ingest → shared Temporal](research/galva-catalyst-ingest.md) ([PLAT-98](https://catalystsoftware.atlassian.net/browse/PLAT-98)).
+
 ## Deployment and merge process
 
 `main` is **protected** on Platypus repos. Treat merges as a small deployment: traceable ticket, human review, and CI validation.

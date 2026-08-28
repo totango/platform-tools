@@ -38,6 +38,9 @@ epics:
   - ref: E09
     summary_contains: "Infra Knowledge Graph"
     labels: [plat-ref:epic-E09, ikg]
+  - ref: E10
+    summary_contains: "Galva"
+    labels: [plat-ref:epic-E10, galva, modernization, migration]
 
 on_conflict:
   action: skip_and_log

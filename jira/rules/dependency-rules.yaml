@@ -46,3 +46,27 @@ rules:
     to: { epic_ref: E01 }
     link: relates_to
     reason: "RFW stories often harden E01/E02 delivery — link with relates to in Jira"
+
+  - id: galva-consumes-ikg
+    from: { epic_ref: E10 }
+    to: { epic_ref: E09 }
+    link: consumes
+    reason: "Galva research uses IKG for service topology and deployment context"
+
+  - id: galva-finops-signals
+    from: { epic_ref: E04 }
+    to: { epic_ref: E10 }
+    link: feeds
+    reason: "FinOps cost signals inform Galva intake and savings hypotheses"
+
+  - id: galva-rfw-output
+    from: { epic_ref: E10 }
+    to: { epic_ref: E03 }
+    link: relates_to
+    reason: "Approved Galva plans often spawn RFW stories to prevent repeat migration pain"
+
+  - id: galva-delivery-handoff
+    from: { epic_ref: E10 }
+    to: { epic_ref: E01 }
+    link: handoff
+    reason: "Galva produces plans; delivery epics execute approved migrations"
