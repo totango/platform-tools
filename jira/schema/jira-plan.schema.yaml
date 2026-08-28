@@ -1,0 +1,21 @@
+# jira-plan output schema (stub)
+# Full synthesis pipeline TBD — see jira/scripts/jira-plan.sh
+
+version: "0.1.0"
+project: PLAT
+
+plan:
+  run_id: string
+  created_at: ISO8601
+  source_snapshot: path
+  epics: []
+  stories: []
+  tasks: []
+
+approval:
+  required: true
+  file: approval.json
+  fields:
+    approved_by: string
+    approved_at: ISO8601
+    notes: string

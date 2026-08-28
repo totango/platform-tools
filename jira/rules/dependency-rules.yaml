@@ -1,0 +1,48 @@
+# Dependency hints for jira-plan synthesize (seeded from bootstrap manifest).
+# last_updated: 2026-08-28
+
+version: "0.1.0"
+project: PLAT
+
+rules:
+  - id: argocd-after-stargate-mvp
+    from: { plat_ref: "108", type: Story }
+    to: { plat_ref: "100", type: Story }
+    link: blocks
+    reason: "ArgoCD hub needs platform-eks hub cluster and routing; sequenced after Stargate MVP sign-off (E01)"
+
+  - id: atlantis-needs-route53
+    from: { plat_ref: "107", type: Story }
+    to: { plat_ref: "101a", type: Task }
+    link: depends_on
+    reason: "Atlantis odieplat.io cutover requires Route53 delegation for odieplat.io (E02)"
+
+  - id: ikg-under-e09
+    from: { plat_ref: "309", type: Story }
+    to: { epic_ref: E09 }
+    link: parent
+    reason: "IKG graph + MCP owned by PLAT-E09"
+
+  - id: castleguard-consumes-ikg
+    from: { component: castleguard }
+    to: { component: ikg, plat_ref: "309" }
+    link: relates_to
+    reason: "Castleguard read-only MCP consumer of IKG — no writes to graph"
+
+  - id: zaha-finops-e04
+    from: { agent: zaha, labels: [finops] }
+    to: { epic_ref: E04 }
+    link: parent
+    reason: "Zaha-led FinOps scans file findings to E06 intake; program epic E04"
+
+  - id: stargate-hub-cluster
+    from: { plat_ref: "100", type: Story }
+    to: { service: platform-eks }
+    link: deploys_to
+    reason: "Stargate and ArgoCD both run on platform-eks shared services (E01)"
+
+  - id: rfw-unblocks-delivery
+    from: { epic_ref: E03 }
+    to: { epic_ref: E01 }
+    link: relates_to
+    reason: "RFW stories often harden E01/E02 delivery — link with relates to in Jira"

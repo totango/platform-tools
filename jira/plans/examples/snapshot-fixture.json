@@ -1,0 +1,42 @@
+{
+  "project": "PLAT",
+  "snapshot_at": "2026-08-28T00:00:00Z",
+  "source": "offline-fixture — replace with jira-plan pull output",
+  "epics": [
+    {
+      "ref": "E01",
+      "summary": "Platform hub — Teleport & ArgoCD",
+      "labels": ["plat-ref:E01", "platform", "stargate", "argocd"]
+    },
+    {
+      "ref": "E07",
+      "summary": "Agent research & validation",
+      "labels": ["plat-ref:E07", "agent-research"]
+    },
+    {
+      "ref": "E09",
+      "summary": "Infra Knowledge Graph (IKG) & Zaha UI",
+      "labels": ["plat-ref:E09", "ikg"]
+    }
+  ],
+  "issues": [
+    {
+      "plat_ref": "100",
+      "type": "Story",
+      "summary": "Platform Access — Stargate (Teleport)",
+      "parent_ref": "E01"
+    },
+    {
+      "plat_ref": "108",
+      "type": "Story",
+      "summary": "ArgoCD hub + unison-integrations GitOps",
+      "parent_ref": "E01"
+    },
+    {
+      "plat_ref": "309",
+      "type": "Story",
+      "summary": "IKG graph builder + MCP server",
+      "parent_ref": "E09"
+    }
+  ]
+}

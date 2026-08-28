@@ -1,0 +1,48 @@
+name: Validate docs
+
+on:
+  pull_request:
+    paths:
+      - 'access/**'
+      - 'docs/**'
+      - '.github/workflows/validate-docs.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'access/**'
+      - 'docs/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Block secret patterns in markdown
+        run: |
+          set -euo pipefail
+          shopt -s globstar nullglob
+          files=(access/**/*.md docs/**/*.md README.md AGENTS.md)
+          if [[ ${#files[@]} -eq 0 ]]; then
+            echo "No markdown files to scan"
+            exit 0
+          fi
+          if grep -E 'AKIA[0-9A-Z]{16}|xox[baprs]-|-----BEGIN.*PRIVATE KEY-----' "${files[@]}"; then
+            echo "::error::Possible secret pattern detected in markdown"
+            exit 1
+          fi
+          echo "Secret pattern scan passed"
+
+      - name: Require last_updated in access docs
+        run: |
+          set -euo pipefail
+          shopt -s globstar nullglob
+          missing=0
+          for f in access/**/*.md; do
+            [[ -f "$f" ]] || continue
+            if ! grep -q '^last_updated:' "$f"; then
+              echo "::error::$f missing last_updated frontmatter"
+              missing=1
+            fi
+          done
+          exit $missing

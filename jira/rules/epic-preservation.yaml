@@ -1,0 +1,44 @@
+# Preserve PLAT epic structure when applying jira-plan changes.
+# Match epics via plat-ref:E0N labels or summary heuristics.
+# last_updated: 2026-08-28
+
+version: "0.1.0"
+project: PLAT
+
+preservation:
+  never_delete_epics: true
+  never_reparent_across_epic: true
+  require_label: plat-ref
+
+epics:
+  - ref: E01
+    summary_contains: "Platform hub"
+    labels: [plat-ref:epic-E01, platform, stargate, argocd]
+  - ref: E02
+    summary_contains: "Atlantis"
+    labels: [plat-ref:epic-E02, atlantis, odieplat.io]
+  - ref: E03
+    summary_contains: "Reduce future work"
+    labels: [plat-ref:epic-E03, rfw]
+  - ref: E04
+    summary_contains: "FinOps"
+    labels: [plat-ref:epic-E04, finops, agent:zaha]
+  - ref: E05
+    summary_contains: "Security"
+    labels: [plat-ref:epic-E05, security, compliance]
+  - ref: E06
+    summary_contains: "Intake"
+    labels: [plat-ref:epic-E06, intake]
+  - ref: E07
+    summary_contains: "Agent research"
+    labels: [plat-ref:epic-E07, agent-research]
+  - ref: E08
+    summary_contains: "Agent platform"
+    labels: [plat-ref:epic-E08, agent:lifecycle]
+  - ref: E09
+    summary_contains: "Infra Knowledge Graph"
+    labels: [plat-ref:epic-E09, ikg]
+
+on_conflict:
+  action: skip_and_log
+  notify: human_review
