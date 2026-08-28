@@ -5,7 +5,8 @@ on:
     paths:
       - 'access/**'
       - 'docs/**'
-      - '.github/workflows/validate-docs.yml'
+      - 'jira/**'
+      - '.github/**'
   push:
     branches: [main]
     paths:

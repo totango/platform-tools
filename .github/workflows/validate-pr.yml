@@ -1,0 +1,20 @@
+name: Validate PR
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  validate-pr-title:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate Jira ticket in PR title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+          JIRA_SITE: catalystsoftware.atlassian.net
+          JIRA_PROJECT: PLAT
+        run: python3 jira/scripts/lib/validate-pr-title.py "$PR_TITLE"

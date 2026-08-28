@@ -82,6 +82,80 @@ Access docs and Jira tickets in this repo must respect **personal privacy**, **c
 
 Scaffold-only content is expected until the synthesis ticket ([PLAT-92](https://catalystsoftware.atlassian.net/browse/PLAT-92)) is completed via privacy-safe PRs.
 
+## Deployment and merge process
+
+`main` is **protected** on Platypus repos. Treat merges as a small deployment: traceable ticket, human review, and CI validation.
+
+### Branch protection (main)
+
+| Rule | Enforcement | Notes |
+|------|-------------|-------|
+| Pull requests required | **Hard** | No direct pushes to `main` |
+| ≥ 1 approving review | **Soft** | GitHub requires one approval; admins may bypass with documented reason |
+| PR title Jira check | **Hard** (format) | CI validates `PLAT-XXX: <summary>`; live Jira lookup when secrets are set |
+| Doc validation | **Hard** (on doc paths) | Secret scan + `last_updated` frontmatter when `access/` or `docs/` change |
+
+Apply or update protection on a repo:
+
+```bash
+.github/scripts/setup-branch-protection.sh totango/platform-tools
+```
+
+Use the same script (with a different `owner/repo` argument) when bootstrapping `platform-ikg`, `platform-castleguard`, `platform-zaha`, and other Platypus repos.
+
+### PR title (Jira-linked)
+
+Every merge to `main` must use a **valid PLAT ticket** in the PR title:
+
+```text
+PLAT-XXX: <short imperative summary>
+```
+
+Examples:
+
+- `PLAT-92: synthesize verified platform access patterns`
+- `PLAT-108: document argocd endpoint auth flow`
+
+CI runs `jira/scripts/validate-pr-title.sh` on each PR. With repo secrets `JIRA_EMAIL` and `JIRA_API_TOKEN`, CI also confirms the ticket exists in project **PLAT**. Without secrets, only the title format is enforced (add secrets for full validation):
+
+```bash
+gh secret set JIRA_EMAIL -R totango/platform-tools
+gh secret set JIRA_API_TOKEN -R totango/platform-tools
+```
+
+Local check before opening a PR:
+
+```bash
+PR_TITLE='PLAT-92: my change' jira/scripts/validate-pr-title.sh
+```
+
+### PR body template
+
+GitHub pre-fills [`.github/pull_request_template.md`](../.github/pull_request_template.md). Use these sections:
+
+| Section | Purpose |
+|---------|---------|
+| **Jira** | Ticket link (`PLAT-XXX`) — must match the PR title |
+| **Summary** | What changed and why |
+| **QA** | How to test; what you verified manually |
+| **Validation** | CI results, privacy/security checklist |
+| **Next steps** | Optional follow-ups, rollout, synthesis work |
+
+Label doc-only PRs **`eng-information`**.
+
+### Merge checklist
+
+1. Branch from `main`; keep scope focused.
+2. Title: `PLAT-XXX: …` (ticket exists and matches the work).
+3. Fill PR template sections; no secrets or customer-identifying data.
+4. CI green (`validate-pr-title` required; doc checks when applicable).
+5. **≥ 1 approval** from a teammate (soft rule — do not self-merge without review).
+6. Squash or merge per team preference; delete the branch after merge.
+
+### Privacy at merge time
+
+Re-read [Privacy](#privacy) before approving: no personal paths, no kubeconfig sync, customer names and tenant identifiers obfuscated or omitted.
+
 ## Onboarding
 
 See [onboarding.md](onboarding.md) for engineer checklist.
