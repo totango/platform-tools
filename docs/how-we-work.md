@@ -2,6 +2,8 @@
 
 **last_updated:** 2026-08-28
 
+> **Workflow recipe:** [jira/recipes/jira-delivery-workflow.md](../jira/recipes/jira-delivery-workflow.md) — pull context, blockers, merge checklist, marking tickets Done.
+
 ## PLAT planning loop
 
 Platform delivery is tracked on the [PLAT board](https://catalystsoftware.atlassian.net/jira/software/c/projects/PLAT/summary). This repo owns lightweight **jira-plan** tooling (read-before-write, human ack before apply):
@@ -23,6 +25,83 @@ jira/scripts/jira-plan.sh --help
 ```
 
 See [jira-space-overview.md](jira-space-overview.md) for Epic → Story → Task hierarchy.
+
+## Jira context and ticket lifecycle
+
+Delivery work should stay **traceable**: Jira describes *what* and *why*; git shows *how*. Use the steps below so tickets, PRs, and comments stay aligned.
+
+### Pull relevant context (before you branch)
+
+Start from the ticket in your PR title, not from memory.
+
+```bash
+# Markdown summary: status, parent, links, siblings (privacy-safe formatting)
+jira/scripts/jira-context.sh PLAT-XXX
+
+# Planning / dependency sweep
+jira/scripts/jira-plan.sh pull
+jira/scripts/jira-plan.sh review
+```
+
+| Source | What to extract |
+|--------|-----------------|
+| **Target ticket** | Summary, description, labels, current status |
+| **Parent Story** | Acceptance criteria — your task should support these |
+| **Epic** (`plat-ref:E0N` or parent epic) | Sequencing and dependencies ([dependency-rules.yaml](../jira/rules/dependency-rules.yaml)) |
+| **Issue links** | `blocks` / `is blocked by` / `relates to` |
+| **Siblings** | Other open tasks under the same story — avoid duplicate work |
+
+**Agents and IDE tools** can load `jira-context.sh` output as read-only scope. Do not copy customer names, tenant IDs, or credentials from Jira into commits or prompts. Obfuscate in ticket comments the same way as in git ([Privacy](#privacy)).
+
+Full step-by-step recipe: [jira/recipes/jira-delivery-workflow.md](../jira/recipes/jira-delivery-workflow.md).
+
+### Align git work with Jira
+
+| Step | Jira | Git |
+|------|------|-----|
+| Start | Ticket **In Progress** (or assign yourself) | Branch `ab/PLAT-XXX/short-topic` |
+| Open PR | Ticket unchanged or comment “PR opened” | Title `PLAT-XXX: …`; body links ticket |
+| Review | Respond to review questions in Jira if they affect AC | Address PR comments; push updates |
+| Merge | Comment with **merged PR URL** | Merge to `main`; delete branch |
+
+Post-merge comment (no secrets, no customer PII):
+
+```bash
+jira/scripts/jira-comment.sh PLAT-XXX "Merged: https://github.com/totango/<repo>/pull/N — <one-line summary>"
+```
+
+### Blockers
+
+When progress stops on external access, another team, or an unresolved decision:
+
+1. Create a new **PLAT** ticket — summary `Blocker: …`, label `blocker`.
+2. Link it **`blocks`** the ticket you are working on.
+3. Comment on the blocked ticket with the blocker key.
+4. Do **not** mark the blocked ticket **Done** until the blocker is resolved or scope is renegotiated.
+
+Split unrelated follow-ups into **new** tickets instead of expanding the original scope silently.
+
+### Marking tickets Done
+
+Match Jira status to **actual** delivery — not “PR merged” alone when AC are unfinished.
+
+| Issue type | Move to Done when |
+|------------|-------------------|
+| **Subtask** | Single deliverable complete (usually one merged PR) |
+| **Task** | Phase complete; no remaining subtasks for that chunk |
+| **Story** | **All** acceptance criteria satisfied |
+| **Epic** | Epic exit criteria met (see [jira-space-overview.md](jira-space-overview.md)) — typically not every PR |
+
+**After merge checklist**
+
+1. PR merged and branch removed.
+2. Jira comment with PR link ([`jira-comment.sh`](../jira/scripts/jira-comment.sh)).
+3. Close **Subtask/Task** if this PR fulfilled it.
+4. Close **Story** only if every AC is done; otherwise file remaining work as new tasks.
+5. Update or close **blocker** tickets.
+6. File **follow-ups** as new PLAT tickets (link `relates to` parent story/epic).
+
+Transitions are done in the Jira UI today; `jira_list_transitions` in [`jira-api.sh`](../jira/scripts/lib/jira-api.sh) is available for future automation.
 
 ## Local configuration
 
@@ -151,6 +230,7 @@ Label doc-only PRs **`eng-information`**.
 4. CI green (`validate-pr-title` required; doc checks when applicable).
 5. **≥ 1 approval** from a teammate (soft rule — do not self-merge without review).
 6. Squash or merge per team preference; delete the branch after merge.
+7. **Jira hygiene** — comment with merged PR URL; transition Subtask/Task/Story per [Marking tickets Done](#marking-tickets-done); update blockers and file follow-ups as new tickets.
 
 ### Privacy at merge time
 

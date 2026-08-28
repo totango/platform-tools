@@ -20,6 +20,11 @@ Usage:
   jira-plan.sh ack [--run-id ID]      Write approval.json (interactive stub)
   jira-plan.sh apply [--run-id ID]    Refuse without approval.json
 
+Related:
+  jira-context.sh PLAT-XXX            Pull ticket context (markdown)
+  jira-comment.sh PLAT-XXX "text"     Post merge/blocker comment
+  See jira/recipes/jira-delivery-workflow.md
+
 Local config (~/.config/platform-tools/config.yaml):
   jira.email, jira.api_token, jira.site, jira.project
   See config/config.yaml.example
