@@ -18,7 +18,7 @@ Platform tooling, **access documentation**, and Jira planning for the Platypus (
 
 - [PLAT board](https://catalystsoftware.atlassian.net/jira/software/c/projects/PLAT/summary)
 - [Access docs](access/) — endpoints, agents, MCP map (scaffold; synthesis ticket pending)
-- [Galva program](docs/research/galva-program.md) — modernization research (E10 / [PLAT-96](https://catalystsoftware.atlassian.net/browse/PLAT-96))
+- [Galva program](docs/research/galva-program.md) — modernization research via `platform-galva` (E10 / [PLAT-96](https://catalystsoftware.atlassian.net/browse/PLAT-96))
 - [Security policy](docs/security.md) — no secrets in git
 
 ## Status

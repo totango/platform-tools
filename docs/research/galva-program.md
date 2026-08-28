@@ -5,7 +5,7 @@ last_updated: "2026-08-28"
 status: draft
 audience: [engineers, agents]
 gaps:
-  - "totango/galva repo does not exist yet — program brief lives in platform-tools until scaffolded"
+  - "totango/platform-galva repo does not exist yet — program brief lives in platform-tools until scaffolded"
   - "Per-language AST tooling choices (Java, Python, Go) not finalized"
   - "Intake automation and IKG integration paths TBD"
 sources_to_synthesize:
@@ -17,7 +17,7 @@ jira: "PLAT-96"
 # Galva program brief
 
 **Jira Epic:** [PLAT-96](https://catalystsoftware.atlassian.net/browse/PLAT-96) (E10 — Galva)  
-**Future repo:** `totango/galva` (not created in this pass)  
+**Future repo:** `totango/platform-galva` (not created in this pass)  
 **Board:** [PLAT](https://catalystsoftware.atlassian.net/jira/software/c/projects/PLAT/summary)
 
 ## What is Galva?
@@ -129,11 +129,11 @@ flowchart LR
 
 | Key | Summary |
 |-----|---------|
-| [PLAT-97](https://catalystsoftware.atlassian.net/browse/PLAT-97) | Galva platform — intake model and multi-language research scaffold |
+| [PLAT-97](https://catalystsoftware.atlassian.net/browse/PLAT-97) | platform-galva — intake model and multi-language research scaffold |
 | [PLAT-98](https://catalystsoftware.atlassian.net/browse/PLAT-98) | Galva: catalyst-ingest migrate to shared Temporal (example inaugural galva) |
 
 ## Next steps
 
 1. Review and approve [PR for galva docs](https://github.com/totango/platform-tools/pulls) (branch `ab/galva-epic`)
-2. Scaffold `totango/galva` repo when ready (separate ticket)
+2. Scaffold `totango/platform-galva` repo when ready (separate ticket)
 3. Execute PLAT-98 research brief — [galva-catalyst-ingest.md](./galva-catalyst-ingest.md)

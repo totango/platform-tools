@@ -12,7 +12,7 @@ Galva — modernization research & migration planning
 
 | Key | Summary |
 |-----|---------|
-| [PLAT-97](https://catalystsoftware.atlassian.net/browse/PLAT-97) | Galva platform — intake model and multi-language research scaffold |
+| [PLAT-97](https://catalystsoftware.atlassian.net/browse/PLAT-97) | platform-galva — intake model and multi-language research scaffold |
 | [PLAT-98](https://catalystsoftware.atlassian.net/browse/PLAT-98) | Galva: catalyst-ingest migrate to shared Temporal |
 
 ## Canonical docs

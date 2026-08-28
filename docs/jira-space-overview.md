@@ -39,7 +39,7 @@ Epic (initiative — quarter / multi-month)
 
 Traceability labels: `plat-ref:E01` … `plat-ref:E10`, `plat-ref:100` for logical IDs.
 
-**Galva (E10):** research/planning for modernizing older codebases — see [docs/research/galva-program.md](research/galva-program.md).
+**Galva (E10):** research/planning for modernizing older codebases — future repo `totango/platform-galva`; see [docs/research/galva-program.md](research/galva-program.md).
 
 ## Tooling in this repo
 

@@ -46,7 +46,7 @@ cp config/config.yaml.example ~/.config/platform-tools/config.yaml
 
 Override the path with `PLATFORM_TOOLS_CONFIG` if needed. **Never** commit `~/.config/platform-tools/config.yaml` or copy its contents into PRs, Jira tickets, or agent context.
 
-The same convention applies to other Platypus repos (`platform-ikg`, `platform-castleguard`, `platform-zaha`): each uses `~/.config/<repo_name>/config.yaml` for local secrets and endpoints.
+The same convention applies to other Platypus repos (`platform-ikg`, `platform-castleguard`, `platform-zaha`, `platform-galva`): each uses `~/.config/<repo_name>/config.yaml` for local secrets and endpoints.
 
 ## Privacy
 
@@ -84,10 +84,11 @@ Scaffold-only content is expected until the synthesis ticket ([PLAT-92](https://
 
 ## Galva — modernization research (E10)
 
-**Galva** ([PLAT-96](https://catalystsoftware.atlassian.net/browse/PLAT-96)) is the PLAT program for researching how to modernize, migrate, and refactor older codebases — without executing production changes in the research phase.
+**Galva** ([PLAT-96](https://catalystsoftware.atlassian.net/browse/PLAT-96)) is the PLAT program for researching how to modernize, migrate, and refactor older codebases — without executing production changes in the research phase. The future implementation repo is **`totango/platform-galva`** (same naming pattern as `platform-ikg`, `platform-castleguard`, `platform-zaha`).
 
 | Concept | Guidance |
 |---------|----------|
+| **Repo** | `totango/platform-galva` — research tooling and intake automation (not yet scaffolded) |
 | **Intake** | Facts in (topology, deps, versions) → strategy out (savings, effort, risk, blast radius) |
 | **Sizing** | Small galvas (one program) vs big galvas (service groups) — see [galva-program.md](research/galva-program.md) |
 | **Languages** | Java, Python, Go, etc. — derive ASTs per ecosystem; no single-language assumption |
@@ -115,7 +116,7 @@ Apply or update protection on a repo:
 .github/scripts/setup-branch-protection.sh totango/platform-tools
 ```
 
-Use the same script (with a different `owner/repo` argument) when bootstrapping `platform-ikg`, `platform-castleguard`, `platform-zaha`, and other Platypus repos.
+Use the same script (with a different `owner/repo` argument) when bootstrapping `platform-ikg`, `platform-castleguard`, `platform-zaha`, `platform-galva`, and other Platypus repos.
 
 ### PR title (Jira-linked)
 
