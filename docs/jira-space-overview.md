@@ -22,7 +22,7 @@ Epic (initiative — quarter / multi-month)
 
 **Rule:** Acceptance criteria on **Story**; definition of done on **Tasks**.
 
-## Epic map (E01–E09)
+## Epic map (E01–E10)
 
 | Epic | Name |
 |------|------|
@@ -35,8 +35,11 @@ Epic (initiative — quarter / multi-month)
 | E07 | Agent research & validation |
 | E08 | Agent platform & lifecycle |
 | E09 | Infra Knowledge Graph (IKG) & Zaha UI |
+| E10 | Galva — modernization research & migration planning ([PLAT-96](https://catalystsoftware.atlassian.net/browse/PLAT-96)) |
 
-Traceability labels: `plat-ref:E01` … `plat-ref:E09`, `plat-ref:100` for logical IDs.
+Traceability labels: `plat-ref:E01` … `plat-ref:E10`, `plat-ref:100` for logical IDs.
+
+**Galva (E10):** research/planning for modernizing older codebases — future repo `totango/platform-galva`; see [docs/research/galva-program.md](research/galva-program.md).
 
 ## Tooling in this repo
 

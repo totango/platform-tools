@@ -17,6 +17,11 @@
       "ref": "E09",
       "summary": "Infra Knowledge Graph (IKG) & Zaha UI",
       "labels": ["plat-ref:E09", "ikg"]
+    },
+    {
+      "ref": "E10",
+      "summary": "Galva — modernization research & migration planning",
+      "labels": ["plat-ref:E10", "galva", "modernization"]
     }
   ],
   "issues": [

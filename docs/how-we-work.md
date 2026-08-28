@@ -46,7 +46,7 @@ cp config/config.yaml.example ~/.config/platform-tools/config.yaml
 
 Override the path with `PLATFORM_TOOLS_CONFIG` if needed. **Never** commit `~/.config/platform-tools/config.yaml` or copy its contents into PRs, Jira tickets, or agent context.
 
-The same convention applies to other Platypus repos (`platform-ikg`, `platform-castleguard`, `platform-zaha`): each uses `~/.config/<repo_name>/config.yaml` for local secrets and endpoints.
+The same convention applies to other Platypus repos (`platform-ikg`, `platform-castleguard`, `platform-zaha`, `platform-galva`): each uses `~/.config/<repo_name>/config.yaml` for local secrets and endpoints.
 
 ## Privacy
 
@@ -82,6 +82,21 @@ Access docs and Jira tickets in this repo must respect **personal privacy**, **c
 
 Scaffold-only content is expected until the synthesis ticket ([PLAT-92](https://catalystsoftware.atlassian.net/browse/PLAT-92)) is completed via privacy-safe PRs.
 
+## Galva — modernization research (E10)
+
+**Galva** ([PLAT-96](https://catalystsoftware.atlassian.net/browse/PLAT-96)) is the PLAT program for researching how to modernize, migrate, and refactor older codebases — without executing production changes in the research phase. The future implementation repo is **`totango/platform-galva`** (same naming pattern as `platform-ikg`, `platform-castleguard`, `platform-zaha`).
+
+| Concept | Guidance |
+|---------|----------|
+| **Repo** | `totango/platform-galva` — research tooling and intake automation (not yet scaffolded) |
+| **Intake** | Facts in (topology, deps, versions) → strategy out (savings, effort, risk, blast radius) |
+| **Sizing** | Small galvas (one program) vs big galvas (service groups) — see [galva-program.md](research/galva-program.md) |
+| **Languages** | Java, Python, Go, etc. — derive ASTs per ecosystem; no single-language assumption |
+| **Platform context** | Use IKG (E09), FinOps (E04), access docs — not personal machine paths |
+| **Handoff** | Approved plans become delivery stories under E01/E02/… — Galva does not merge infra changes |
+
+Example inaugural galva: [catalyst-ingest → shared Temporal](research/galva-catalyst-ingest.md) ([PLAT-98](https://catalystsoftware.atlassian.net/browse/PLAT-98)).
+
 ## Deployment and merge process
 
 `main` is **protected** on Platypus repos. Treat merges as a small deployment: traceable ticket, human review, and CI validation.
@@ -101,7 +116,7 @@ Apply or update protection on a repo:
 .github/scripts/setup-branch-protection.sh totango/platform-tools
 ```
 
-Use the same script (with a different `owner/repo` argument) when bootstrapping `platform-ikg`, `platform-castleguard`, `platform-zaha`, and other Platypus repos.
+Use the same script (with a different `owner/repo` argument) when bootstrapping `platform-ikg`, `platform-castleguard`, `platform-zaha`, `platform-galva`, and other Platypus repos.
 
 ### PR title (Jira-linked)
 
