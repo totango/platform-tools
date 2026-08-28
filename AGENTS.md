@@ -5,7 +5,10 @@ For AI agents (Goose, Cursor, etc.) working on Platypus platform tooling:
 1. [access/README.md](access/README.md)
 2. [access/mcps/interlink-map.md](access/mcps/interlink-map.md)
 3. [docs/how-we-work.md](docs/how-we-work.md)
-4. [jira/rules/epic-preservation.yaml](jira/rules/epic-preservation.yaml)
+4. [jira/recipes/jira-delivery-workflow.md](jira/recipes/jira-delivery-workflow.md)
+5. [jira/rules/epic-preservation.yaml](jira/rules/epic-preservation.yaml)
+
+**Before coding a ticket:** run `jira/scripts/jira-context.sh PLAT-XXX` for scope (requires local Jira config). After merge, comment on the ticket and mark the correct issue level Done — see the recipe.
 
 **Rules**
 

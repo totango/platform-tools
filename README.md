@@ -11,7 +11,8 @@ Platform tooling, **access documentation**, and Jira planning for the Platypus (
 | Engineers | [access/README.md](access/README.md) → [docs/onboarding.md](docs/onboarding.md) |
 | Local config | `~/.config/platform-tools/config.yaml` — see [config/config.yaml.example](config/config.yaml.example) |
 | AI agents | [AGENTS.md](AGENTS.md) |
-| PLAT planning | [docs/how-we-work.md](docs/how-we-work.md) → [jira/scripts/jira-plan.sh](jira/scripts/jira-plan.sh) |
+| PLAT planning | [docs/how-we-work.md](docs/how-we-work.md) → [jira/recipes/jira-delivery-workflow.md](jira/recipes/jira-delivery-workflow.md) |
+| Jira context CLI | `jira/scripts/jira-context.sh PLAT-XXX` |
 | Merge / PR rules | [docs/how-we-work.md#deployment-and-merge-process](docs/how-we-work.md#deployment-and-merge-process) |
 
 ## Links

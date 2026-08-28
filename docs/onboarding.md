@@ -8,8 +8,8 @@
 2. Read [access/README.md](../access/README.md) and [security.md](security.md).
 3. Copy `config/config.yaml.example` → `~/.config/platform-tools/config.yaml` (local only).
 4. Run `access/scripts/check-access.sh` — expect SKIP/FAIL until configured.
-5. Join PLAT planning: [how-we-work.md](how-we-work.md).
-6. Merges to `main`: PR title `PLAT-XXX: …`, ≥ 1 approval, CI green — see [Deployment and merge process](how-we-work.md#deployment-and-merge-process).
+5. Join PLAT planning: [how-we-work.md](how-we-work.md) and [jira delivery recipe](../jira/recipes/jira-delivery-workflow.md).
+6. Merges to `main`: PR title `PLAT-XXX: …`, ≥ 1 approval, CI green — see [Deployment and merge process](how-we-work.md#deployment-and-merge-process). After merge, comment on Jira and close the right ticket level.
 
 ## Agents
 

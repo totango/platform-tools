@@ -43,6 +43,34 @@ jira_get_issue() {
   jira_api GET "/issue/${key}?fields=summary,labels,issuetype,parent"
 }
 
+jira_get_issue_full() {
+  local key="$1"
+  jira_require_auth
+  jira_api GET "/issue/${key}?fields=summary,description,status,assignee,labels,issuetype,parent,issuelinks,subtasks"
+}
+
+jira_add_comment() {
+  local key="$1" payload="$2"
+  jira_require_auth
+  jira_api POST "/issue/${key}/comment" -d "$payload"
+}
+
+jira_list_transitions() {
+  local key="$1"
+  jira_require_auth
+  jira_api GET "/issue/${key}/transitions"
+}
+
+jira_transition_issue() {
+  local key="$1" transition_id="$2" payload="${3:-}"
+  jira_require_auth
+  if [[ -n "$payload" ]]; then
+    jira_api POST "/issue/${key}/transitions" -d "$payload"
+  else
+    jira_api POST "/issue/${key}/transitions" -d "{\"transition\":{\"id\":\"${transition_id}\"}}"
+  fi
+}
+
 jira_create_issue() {
   local payload="$1"
   jira_require_auth
